@@ -1,0 +1,552 @@
+﻿/* ==========================================================================
+   1. VARIABLES Y CONFIGURACIÓN BASE
+   ========================================================================== */
+:root {
+    --bussersa-dark: #002244;
+    --bussersa-primary: #003366;
+    --bussersa-accent: #D4AF37;
+    --bussersa-light: #f8f9fa;
+    --bussersa-success: #198754;
+    --bussersa-info: #0dcaf0;
+    --bussersa-warning: #ffc107;
+}
+
+body {
+    background-color: #f4f7f9;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #333;
+    margin: 0;
+}
+
+* :focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* ==========================================================================
+   2. COMPONENTES CORE (REFORZADOS)
+   ========================================================================== */
+.icon-shape {
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 60px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 16px !important;
+    transition: all 0.3s ease !important;
+    overflow: hidden;
+}
+
+    /* Alineación matemática para iconos de Bootstrap */
+    .icon-shape i {
+        font-size: 1.6rem !important;
+        line-height: 0 !important;
+        margin: 0 !important;
+        display: block !important;
+    }
+
+    /* Clases de utilidad para colores de iconos (Solo afectan a icon-shape) */
+    .icon-shape.bg-primary i {
+        color: #ffffff !important;
+    }
+
+    .icon-shape.bg-opacity-10.text-primary i {
+        color: var(--bussersa-primary) !important;
+    }
+
+    .icon-shape.bg-opacity-10.text-success i {
+        color: var(--bussersa-success) !important;
+    }
+
+    .icon-shape.bg-opacity-10.text-info i {
+        color: var(--bussersa-info) !important;
+    }
+
+.hover-lift {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+    .hover-lift:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+    }
+
+/* ==========================================================================
+   3. HERO SECTION & IDENTIDAD
+   ========================================================================== */
+.hero-section {
+    background: linear-gradient(135deg, var(--bussersa-dark) 0%, var(--bussersa-primary) 100%) !important;
+    min-height: 45vh;
+    border-radius: 0 0 60px 60px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+    .hero-section::before {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        top: -150px;
+        right: -100px;
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+        border-radius: 50%;
+        filter: blur(60px);
+        z-index: 2;
+        pointer-events: none;
+    }
+
+/* ==========================================================================
+   4. TRAYECTORIA (TIMELINE INTERACTIVO)
+   ========================================================================== */
+.timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 20px 0;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 40px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--bussersa-accent) 0%, #dee2e6 100%);
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    padding-left: 100px;
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 12px;
+    top: 0;
+    width: 60px;
+    height: 60px;
+    background: white !important;
+    border: 4px solid var(--bussersa-primary) !important;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.timeline-year {
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: var(--bussersa-primary);
+    transition: color 0.3s ease;
+}
+
+.timeline-card {
+    background: white !important;
+    padding: 25px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+    border: 1px solid rgba(0,0,0,0.05) !important;
+    border-left: 6px solid var(--bussersa-primary) !important;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+}
+
+.timeline-item:hover .timeline-card {
+    transform: translateX(15px) translateY(-5px) !important;
+    box-shadow: 0 20px 40px rgba(0,51,102,0.12) !important;
+    border-left-width: 10px !important;
+}
+
+.timeline-item:hover .timeline-dot {
+    background-color: var(--bussersa-accent) !important;
+    transform: scale(1.15) rotate(5deg) !important;
+}
+
+.timeline-item:hover .timeline-year {
+    color: var(--bussersa-dark) !important;
+}
+
+/* ==========================================================================
+   5. SIDEBAR PÚBLICO (AISLADO)
+   ========================================================================== */
+.nav-item .custom-sidebar-link {
+    display: flex !important;
+    align-items: center !important;
+    padding: 14px 20px !important;
+    text-decoration: none !important;
+    color: var(--bussersa-primary) !important;
+    border-radius: 12px !important;
+    margin: 6px 12px !important;
+    transition: all 0.25s ease !important;
+    font-weight: 500 !important;
+    border-left: 4px solid transparent !important;
+}
+
+    /* Este selector asegura que el margen solo afecte al Sidebar */
+    .nav-item .custom-sidebar-link i {
+        font-size: 1.3rem !important;
+        min-width: 35px !important;
+        margin-right: 12px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .nav-item .custom-sidebar-link:hover {
+        background-color: rgba(0, 51, 102, 0.06) !important;
+        transform: translateX(5px) !important;
+    }
+
+    .nav-item .custom-sidebar-link.active {
+        background-color: #e9ecef !important;
+        border-left: 4px solid var(--bussersa-accent) !important;
+        font-weight: 700 !important;
+    }
+
+/* ANIMACIÓN MENÚ MÓVIL */
+.mobile-nav-container {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    z-index: 3000;
+    transition: left 0.4s cubic-bezier(0.77,0.2,0.05,1.0);
+    visibility: hidden;
+}
+
+    .mobile-nav-container.active {
+        left: 0;
+        visibility: visible;
+    }
+
+.menu-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(3px);
+}
+
+.mobile-sidebar {
+    position: absolute;
+    width: 280px;
+    height: 100%;
+    left: 0;
+    z-index: 3001;
+    background: white;
+}
+
+/* ==========================================================================
+   6. ÁREA PRIVADA (CLIENT DASHBOARD)
+   ========================================================================== */
+.client-admin-wrapper {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar-privado {
+    width: 280px;
+    background-color: var(--bussersa-dark) !important;
+    height: 100vh;
+    flex-shrink: 0;
+    border-right: 4px solid var(--bussersa-accent);
+    display: flex;
+    flex-direction: column;
+    z-index: 1100;
+}
+
+.main-privado {
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: #f4f7f9;
+    height: 100vh;
+    padding: 2rem;
+}
+
+.nav-privado-link {
+    color: rgba(255,255,255,0.7) !important;
+    padding: 12px 20px;
+    text-decoration: none !important;
+    display: flex;
+    align-items: center;
+    margin: 5px 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+    .nav-privado-link i {
+        margin-right: 12px;
+        font-size: 1.2rem;
+    }
+
+    .nav-privado-link:hover {
+        background: rgba(255,255,255,0.05);
+        color: var(--bussersa-accent) !important;
+    }
+
+    .nav-privado-link.active {
+        background: var(--bussersa-accent) !important;
+        color: var(--bussersa-dark) !important;
+        font-weight: 700;
+    }
+
+/* ==========================================================================
+   7. TABLAS & BANNERS
+   ========================================================================== */
+.bussersa-table-wrapper {
+    background: #ffffff !important;
+    border-radius: 25px !important;
+    overflow: hidden !important;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1) !important;
+    border: 1px solid #e0e0e0 !important;
+    margin: 2rem 0 !important;
+}
+
+.table-comparison {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    table-layout: fixed !important;
+}
+
+    .table-comparison thead th {
+        background-color: var(--bussersa-dark) !important;
+        color: white !important;
+        padding: 22px 15px !important;
+        text-align: center !important;
+    }
+
+    .table-comparison td {
+        padding: 20px !important;
+        border-bottom: 1px solid #eee !important;
+    }
+
+        .table-comparison td.feature-name {
+            font-weight: 700 !important;
+            color: var(--bussersa-primary) !important;
+            background-color: #fcfcfc !important;
+        }
+
+        .table-comparison td.bussersa-cell {
+            background-color: rgba(212, 175, 55, 0.08) !important;
+            font-weight: 800 !important;
+            text-align: center !important;
+        }
+
+.cta-custom-banner {
+    background: linear-gradient(135deg, var(--bussersa-dark) 0%, var(--bussersa-primary) 100%) !important;
+    border-left: 8px solid var(--bussersa-accent) !important;
+    border-radius: 30px;
+    color: white !important;
+}
+
+.tracking-wider {
+    letter-spacing: 2px;
+}
+
+.x-small {
+    font-size: 0.75rem;
+}
+
+/* Corrección específica para los iconos de la sección Valores */
+.card .icon-shape.bg-primary {
+    background-color: var(--bussersa-primary) !important;
+    box-shadow: 0 4px 15px rgba(0, 51, 102, 0.2) !important;
+}
+
+    .card .icon-shape.bg-primary i {
+        color: #ffffff !important; /* Icono blanco sobre fondo azul BUSSERSA */
+    }
+
+/* Efecto opcional: Cambiar a dorado al pasar el mouse por la tarjeta */
+.card.hover-lift:hover .icon-shape.bg-primary {
+    background-color: var(--bussersa-accent) !important;
+    transform: rotate(-5deg) scale(1.1);
+}
+
+/* ==========================================================================
+   CORRECCIÓN DE ADAPTABILIDAD (PANTALLAS 15" Y LAPTOPS)
+   ========================================================================== */
+
+/* 1. Unificación de Contenedores Raíz */
+.page, .client-admin-wrapper, .bussersa-login-viewport {
+    max-width: 100% !important;
+    overflow-x: hidden !important; /* Evita el scroll horizontal molesto */
+}
+
+/* 2. Flexibilidad de Sidebars (Público y Privado) */
+/* Forzamos un ancho fijo en píxeles en lugar de porcentajes de Bootstrap */
+nav.col-md-3.col-lg-2,
+aside.sidebar-privado {
+    flex: 0 0 260px !important;
+    width: 260px !important;
+    max-width: 260px !important;
+    min-width: 260px !important;
+}
+
+/* 3. El "Main" debe ser elástico */
+main.col-md-9,
+main.main-privado {
+    flex: 1 !important; /* Ocupa todo el espacio restante */
+    width: auto !important;
+    max-width: 100% !important;
+    min-width: 0 !important; /* Permite que el contenido interno se encoja */
+    margin-left: 0 !important;
+}
+
+/* 4. Ajustes específicos para Laptops (1366px a 1500px) */
+@media (max-width: 1500px) {
+    /* Reducimos sutilmente el sidebar para ganar espacio de trabajo */
+    nav.col-md-3.col-lg-2,
+    aside.sidebar-privado {
+        flex: 0 0 230px !important;
+        width: 230px !important;
+    }
+
+    /* Reducimos el tamaño de los Hero Sections para que no dominen la pantalla */
+    .hero-section {
+        min-height: 300px !important;
+        padding: 40px 0 !important;
+    }
+
+        .hero-section h1 {
+            font-size: 2.2rem !important;
+        }
+
+    /* Ajuste de tablas para que no rompan el layout */
+    .bussersa-table-wrapper {
+        overflow-x: auto !important;
+    }
+}
+
+/* 5. Corrección de Header Privado */
+header.bg-white.shadow-sm {
+    width: 100% !important;
+    flex-shrink: 0 !important; /* Evita que el header se aplaste verticalmente */
+}
+
+/* 6. Ajuste de Login Orbs para no generar scroll */
+.login-orb {
+    max-width: 30vw !important;
+    max-height: 30vw !important;
+}
+
+/* ==========================================================================
+   CORRECCIÓN: SOLO ICONOS EN TABLETS (768px - 1024px)
+   ========================================================================== */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* 1. Forzar ancho del Sidebar */
+    nav.col-md-3,
+    aside.sidebar-privado {
+        flex: 0 0 85px !important;
+        width: 85px !important;
+        min-width: 85px !important;
+        max-width: 85px !important;
+    }
+
+    /* 2. Ocultar TODO lo que no sea un icono dentro de los links */
+    /* Seleccionamos el span y cualquier nodo de texto directo */
+    .custom-sidebar-link span,
+    .nav-privado-link span,
+    .sidebar-privado small,
+    .sidebar-privado h4,
+    .sidebar-privado .badge,
+    .user-badge {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+
+    /* 3. Limpiar el contenedor del link para que no queden "letras sueltas" */
+    .custom-sidebar-link,
+    .nav-privado-link {
+        font-size: 0 !important; /* Truco: hace que cualquier texto suelto desaparezca */
+        justify-content: center !important;
+        padding: 15px 0 !important;
+        margin: 5px auto !important;
+        width: 55px;
+        border-radius: 12px !important;
+    }
+
+        /* 4. Rescatar el icono (para que no le afecte el font-size: 0) */
+        .custom-sidebar-link i,
+        .nav-privado-link i {
+            font-size: 1.6rem !important; /* Tamaño legible en tablet */
+            margin: 0 !important;
+            display: block !important;
+        }
+
+    /* 5. Ajustar el Branding (Logo) para que solo se vea un punto o desaparezca */
+    .sidebar-privado .p-4.text-center {
+        padding: 20px 0 !important;
+    }
+}
+
+footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #001a33 !important; /* El azul oscuro de BUSSERSA */
+}
+
+    footer a:hover {
+        color: var(--bs-warning) !important;
+        opacity: 1 !important;
+        transition: all 0.3s ease;
+    }
+
+.hover-opacity-100:hover {
+    opacity: 1 !important;
+}
+
+/* Ajuste de márgenes para que el footer no se pegue en pantallas de 15" */
+@@media (max-width: 1400px) {
+    footer .container {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+    }
+}
+
+/* Formato para el bloque de Portal en Footer */
+.hover-lift-sm {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .hover-lift-sm:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3); /* Brillo dorado al pasar el mouse */
+        background-color: #ffca2c !important; /* Amarillo más intenso */
+    }
+
+/* Asegurar que el texto dentro del footer sea legible */
+footer h6 {
+    color: #D4AF37 !important; /* Dorado BUSSERSA */
+}
+
+footer .btn-warning {
+    border: none !important;
+}
+
+/* Asegurar que SweetAlert2 esté por encima de cualquier componente de BUSSERSA */
+.swal2-container {
+    z-index: 9999 !important;
+}
+
+/* Corregir posible conflicto con animaciones de entrada */
+.swal2-shown {
+    overflow: hidden !important;
+}
+
